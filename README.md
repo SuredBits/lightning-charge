@@ -42,6 +42,8 @@ $ brew install node # installs npm as well
 
 We need [`bitcoind`](https://github.com/bitcoin/bitcoin), for downloading and interacting with the Bitcoin blockchain.
 
+As of the time of this writing, the bitcoin testnet will take ~25GB of space on your computer's hard drive.
+
 ### Ubuntu
 
 ```bash
@@ -58,9 +60,23 @@ $ brew install bitcoin
 
 Downloading and verifying the Bitcoin blockchain is going to take a while, so you should start that right away.
 
-First, edit your `bitcoind` configuration file, found in `~/.bitcoin/bitcoin.conf`. It should look like this, at the bare minimum:
+First, edit your `bitcoind` configuration file called `bitcoin.conf`. Here is a table to show you where this file should be located based on your OS. If there isn't a file that exists there already, create one.
 
 ```
+Operating System 	Default bitcoin datadir 	                 Typical path to configuration file
+
+Windows 	        %APPDATA%\Bitcoin\ 	                         C:\Users\username\AppData\Roaming\Bitcoin\bitcoin.conf
+
+Linux 	                $HOME/.bitcoin/ 	                         /home/username/.bitcoin/bitcoin.conf
+
+Mac OSX 	        $HOME/Library/Application Support/Bitcoin/ 	 /Users/username/Library/Application Support/Bitcoin/bitcoin.conf
+````
+You need to create a rpc username and password inside of your bitcoin.conf file
+
+```
+daemon=1
+testnet=1
+txindex=1
 rpcuser=REPLACEME
 rpcpassword=REPLACEME
 ```
@@ -70,7 +86,7 @@ For more information on configuring bitcoind please see [this](https://en.bitcoi
 Start `bitcoind`:
 
 ```bash
-$ bitcoind -testnet -daemon
+$ bitcoind 
 ```
 
 `bitcoind` will now sync the blockhain. This will take a while, typically several hours. You can inspect the log to ensure that progress is made:

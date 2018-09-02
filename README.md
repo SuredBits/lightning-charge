@@ -89,10 +89,10 @@ Start `bitcoind`:
 $ bitcoind 
 ```
 
-`bitcoind` will now sync the blockhain. This will take a while, typically several hours. You can inspect the log to ensure that progress is made:
+`bitcoind` will now sync the blockhain. This will take a while, typically several hours. You can inspect the log to ensure that progress is made. Depending on where your `bitcoin.conf` file is, you can watch your node sync by using `tail`. For example, on macOS you can do:
 
 ```bash
-$ tail -f $HOME/.bitcoin/testnet3/debug.log
+$ tail -f $HOME/Library/Application Support/Bitcoin/testnet3/debug.log
 ```
 
 ---
